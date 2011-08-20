@@ -1,4 +1,4 @@
-1313853590
+1313856029
 Application	/home/pierre/workspace/santequebec/config/application.rb	  class Application 
 ApplicationController	/home/pierre/workspace/santequebec/app/controllers/application_controller.rb	class ApplicationController 
 ApplicationHelper	/home/pierre/workspace/santequebec/app/helpers/application_helper.rb	module ApplicationHelper
@@ -11,6 +11,8 @@ Santequebec	/home/pierre/workspace/santequebec/config/application.rb	module Sant
 Str	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function Str(key, holder, stack)
 TestCase	/home/pierre/workspace/santequebec/test/test_helper.rb	class ActiveSupport::TestCase
 Type	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function Type(o)
+UsersController	/home/pierre/workspace/santequebec/app/controllers/users_controller.rb	class UsersController 
+UsersHelper	/home/pierre/workspace/santequebec/app/helpers/users_helper.rb	module UsersHelper
 abs	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function abs()
 absolutize	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function absolutize(element)
 addMethods	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function addMethods(source)
@@ -133,6 +135,7 @@ merge	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	functio
 merge	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function merge(object)
 methodize	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function methodize()
 min	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function min(iterator, context)
+new	/home/pierre/workspace/santequebec/app/controllers/users_controller.rb	  def new
 observe	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function observe(element, eventName, handler)
 on	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function on(element, eventName, selector, callback)
 parseColor	/home/pierre/workspace/santequebec/public/javascripts/effects.js	function parseColor(color)
