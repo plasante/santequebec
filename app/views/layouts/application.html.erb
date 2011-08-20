@@ -6,11 +6,15 @@
 </head>
 <body>
   <div data-role="page" id="first">
-    <%= render 'layouts/header' %>    
+    <div data-role="header" data-theme="b">
+      <h1><%= header %></h1>
+    </div>    
     <div data-role="content" data-theme="b">
       <%= yield %>
     </div>
-    <%= render 'layouts/footer' %>    
+    <div data-role="footer" data-theme="b">
+      <h1>Footer</h1>
+    </div>    
   </div>
 </body>
 </html>
