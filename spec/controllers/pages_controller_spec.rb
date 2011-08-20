@@ -11,11 +11,11 @@ describe PagesController do
     end
     it "should have the right title" do
       get 'home'
-      response.should have_selector("title", :content => "Santé" )
+      response.should have_selector("title", :content => "Sante Quebec" )
     end
-    it "should have the right entete" do
+    it "should contain Menu Principal" do
       get 'home'
-      response.should have_selector("h1", :content => "Santé")
+      response.should have_selector("p", :content => "Menu Principal")
     end
   end
 
