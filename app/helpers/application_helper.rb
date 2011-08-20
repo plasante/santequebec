@@ -1,7 +1,7 @@
 module ApplicationHelper
   #Return a title on a per-page basis.
   def title
-    base_title = %(Sant&eacute; Qu&eacute;bec)
+    base_title = %(Sante Quebec)
     if @title.nil?
       base_title
     else
@@ -10,7 +10,7 @@ module ApplicationHelper
   end
   
   def header
-    base_header = %(Sant&eacute; Qu&eacute;bec)
+    base_header = %(Sante Quebec)
     if @header.nil?
       base_header
     else
