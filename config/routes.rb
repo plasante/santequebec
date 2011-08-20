@@ -1,6 +1,10 @@
 Santequebec::Application.routes.draw do
   get "pages/home"
 
+  match '/aide',    :to => 'pages#aide'
+  match '/apropos', :to => 'pages#apropos'
+
+  root :to => 'pages#home'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

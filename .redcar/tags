@@ -1,4 +1,4 @@
-1313850035
+1313853036
 Application	/home/pierre/workspace/santequebec/config/application.rb	  class Application 
 ApplicationController	/home/pierre/workspace/santequebec/app/controllers/application_controller.rb	class ApplicationController 
 ApplicationHelper	/home/pierre/workspace/santequebec/app/helpers/application_helper.rb	module ApplicationHelper
@@ -15,8 +15,10 @@ abs	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function 
 absolutize	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function absolutize(element)
 addMethods	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function addMethods(source)
 addText	/home/pierre/workspace/santequebec/public/javascripts/controls.js	function addText(mode, condition)
+aide	/home/pierre/workspace/santequebec/app/controllers/pages_controller.rb	  def aide
 all	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function all(iterator, context)
 any	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function any(iterator, context)
+apropos	/home/pierre/workspace/santequebec/app/controllers/pages_controller.rb	  def apropos
 argumentNames	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function argumentNames()
 bind	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function bind(context)
 bindAsEventListener	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function bindAsEventListener(context)
@@ -152,6 +154,7 @@ scan	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function
 select	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function select()
 select	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function select(selector, scope)
 set	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function set(key, value)
+set_title_header	/home/pierre/workspace/santequebec/app/controllers/pages_controller.rb	  def set_title_header( text )
 size	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function size()
 size	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function size()
 sortBy	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function sortBy(iterator, context)
