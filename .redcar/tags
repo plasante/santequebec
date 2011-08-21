@@ -1,4 +1,4 @@
-1313856029
+1313882572
 Application	/home/pierre/workspace/santequebec/config/application.rb	  class Application 
 ApplicationController	/home/pierre/workspace/santequebec/app/controllers/application_controller.rb	class ApplicationController 
 ApplicationHelper	/home/pierre/workspace/santequebec/app/helpers/application_helper.rb	module ApplicationHelper
