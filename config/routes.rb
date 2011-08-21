@@ -1,13 +1,12 @@
 Santequebec::Application.routes.draw do
-  get "users/new"
-
-  get "pages/home"
-
+  resources :users
+  
   match '/aide',    :to => 'pages#aide'
   match '/apropos', :to => 'pages#apropos'
   match '/signup',  :to => 'users#new'
 
   root :to => 'pages#home'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

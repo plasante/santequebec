@@ -1,8 +1,10 @@
-1313882572
+1313939264
+AddEmailUniquenessIndex	/home/pierre/workspace/santequebec/db/migrate/20110821144614_add_email_uniqueness_index.rb	class AddEmailUniquenessIndex 
 Application	/home/pierre/workspace/santequebec/config/application.rb	  class Application 
 ApplicationController	/home/pierre/workspace/santequebec/app/controllers/application_controller.rb	class ApplicationController 
 ApplicationHelper	/home/pierre/workspace/santequebec/app/helpers/application_helper.rb	module ApplicationHelper
 BrowsingTest	/home/pierre/workspace/santequebec/test/performance/browsing_test.rb	class BrowsingTest 
+CreateUsers	/home/pierre/workspace/santequebec/db/migrate/20110821130650_create_users.rb	class CreateUsers 
 PagesController	/home/pierre/workspace/santequebec/app/controllers/pages_controller.rb	class PagesController 
 PagesControllerTest	/home/pierre/workspace/santequebec/test/functional/pages_controller_test.rb	class PagesControllerTest 
 PagesHelper	/home/pierre/workspace/santequebec/app/helpers/pages_helper.rb	module PagesHelper
@@ -11,6 +13,7 @@ Santequebec	/home/pierre/workspace/santequebec/config/application.rb	module Sant
 Str	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function Str(key, holder, stack)
 TestCase	/home/pierre/workspace/santequebec/test/test_helper.rb	class ActiveSupport::TestCase
 Type	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function Type(o)
+User	/home/pierre/workspace/santequebec/app/models/user.rb	class User 
 UsersController	/home/pierre/workspace/santequebec/app/controllers/users_controller.rb	class UsersController 
 UsersHelper	/home/pierre/workspace/santequebec/app/helpers/users_helper.rb	module UsersHelper
 abs	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function abs()
@@ -51,6 +54,8 @@ detect	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	functi
 dirCheck	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function dirCheck( dir, cur, doneName, checkSet, nodeCheck, isXML )
 dirNodeCheck	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function dirNodeCheck( dir, cur, doneName, checkSet, nodeCheck, isXML )
 dispatch	/home/pierre/workspace/santequebec/public/javascripts/effects.js	function dispatch(effect, eventName)
+down	/home/pierre/workspace/santequebec/db/migrate/20110821130650_create_users.rb	  def self.down
+down	/home/pierre/workspace/santequebec/db/migrate/20110821144614_add_email_uniqueness_index.rb	  def self.down
 each	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function each(iterator)
 each	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function each(iterator, context)
 eachSlice	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function eachSlice(number, iterator, context)
@@ -158,6 +163,7 @@ select	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	functi
 select	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function select(selector, scope)
 set	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function set(key, value)
 set_title_header	/home/pierre/workspace/santequebec/app/controllers/pages_controller.rb	  def set_title_header( text )
+show	/home/pierre/workspace/santequebec/app/controllers/users_controller.rb	  def show
 size	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function size()
 size	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function size()
 sortBy	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function sortBy(iterator, context)
@@ -198,6 +204,8 @@ unescapeHTML	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	
 unfilterJSON	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function unfilterJSON(filter)
 uniq	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function uniq(sorted)
 unset	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function unset(key)
+up	/home/pierre/workspace/santequebec/db/migrate/20110821130650_create_users.rb	  def self.up
+up	/home/pierre/workspace/santequebec/db/migrate/20110821144614_add_email_uniqueness_index.rb	  def self.up
 update	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function update(array, args)
 update	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function update(element, content)
 update	/home/pierre/workspace/santequebec/public/javascripts/prototype.js	function update(object)
