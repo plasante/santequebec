@@ -125,6 +125,7 @@ describe User do
       @user.encrypted_password.should_not be_blank
     end
     
+    # The has_password method is the public interface to the encryption machinery.
     describe "has_password? method" do
       it "should be true of the passwords match" do
         @user.has_password?(@attr[:password]).should be_true
@@ -132,6 +133,21 @@ describe User do
       it "should be false if the passwords dont match" do
         @user.has_password?("invalid").should be_false
       end
+    end
+    
+    describe "authenticate method" do
+        it "should return nil on email/password mismatch" do
+            wrong_password_user = User.authenticate(@attr[:email], "wrongpass")
+            wrong_password_user.should be_nil
+        end
+        it "should return nil on email address with not user" do
+            nonexistent_user = User.authenticate("bar@foo.com", @attr[:password])
+            nonexistent_user.should be_nil
+        end
+        it "should return the user on email/password match" do
+            matching_user = User.authenticate(@attr[:email], @attr[:password])
+            matching_user.should == @user
+        end
     end
   end
 end

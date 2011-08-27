@@ -32,15 +32,35 @@ class User < ActiveRecord::Base
   # Return true if the user's password matches the submitted password.
   def has_password?(submitted_password)
     #Compare encrypted password with the encrypted version of submitted_password.
+    encrypted_password == encrypt(submitted_password)
+  end
+  
+  #
+  # The third case (password mismatch) is implicitly implemented. If we reach
+  # the end of the method then it automatically returns nil.
+  #
+  def self.authenticate(submitted_email_str, submitted_password_str)
+    user = find_by_email(submitted_email_str)
+    return nil if user.nil?
+    return user if user.has_password?(submitted_password_str)
   end
   
   private
   
   def encrypt_password
+    self.salt = make_salt if new_record?
     self.encrypted_password = encrypt(password)
   end
   
   def encrypt(string)
-    string
+    secure_hash("#{salt}--#{string}")
+  end
+  
+  def make_salt
+    secure_hash("#{Time.now.utc}--#{password}")
+  end
+  
+  def secure_hash(string)
+    Digest::SHA2.hexdigest(string)
   end
 end
