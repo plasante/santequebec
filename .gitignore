@@ -6,3 +6,4 @@ tmp/
 .redcar/lucene/segments.gen
 .redcar/lucene_last_updated
 .redcar/tags
+webrat.log

@@ -1,4 +1,6 @@
 Santequebec::Application.routes.draw do
+  get "sessions/new"
+
   resources :users
   
   match '/aide',    :to => 'pages#aide'
