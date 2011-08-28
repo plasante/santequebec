@@ -45,4 +45,33 @@ describe UsersController do
       #response.should have_selector("h1>img", :class => "gravatar")
     end
   end
+  
+  describe "POST :create" do
+    describe "failure" do
+      before(:each) do
+        @attr = { :first_name=>'', :last_name=>'', :email=>'', :password=>'', :password_confirmation=>'' }
+      end
+      
+      it "should not create a user" do
+        lambda do
+          post :create, :user => @attr
+        end.should_not change(User, :count)
+      end
+      
+      it "should have the right title" do
+        post :create, :user => @attr
+        response.should have_selector( :title , :content => %(Inscription) )
+      end
+      
+      it "should render the :new page" do
+        post :create, :user => @attr
+        response.should render_template('new')
+      end
+      
+    end # of describe failure
+    
+    describe "success" do
+    
+    end # of describe success
+  end # of "describe POST :create"
 end

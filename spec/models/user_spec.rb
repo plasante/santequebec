@@ -57,7 +57,7 @@ describe User do
   end
   
   it "should accept valid email addresses" do
-    addresses = %w[user@foo.com THE_USER@foo.bar.org first.last@fooljp]
+    addresses = %w[user@foo.com THE_USER@foo.bar.org first.last@fool.jp]
     addresses.each do |address|
       valid_email_user = User.new(@attr.merge(:email => address))
       valid_email_user.should be_valid

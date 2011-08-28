@@ -1,6 +1,7 @@
 <h1>Inscription</h1>
 
 <%= form_for @user do |f| %>
+  <%= render 'shared/error_messages' %>
   <div class="field">
     <%= f.label %(Prénom) %><br />
     <%= f.text_field :first_name %>

@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.4'
 gem 'sqlite3-ruby', '1.3.2', :require => 'sqlite3'
-gem 'jquery-rails', '>= 0.2.6'
+gem 'jquery-rails', '>= 1.0.12'
 
 
 # Use unicorn as the web server
@@ -33,6 +33,7 @@ group :development do
   gem 'mysql'
   gem 'rake', '0.8.7'
   gem 'annotate', '2.4.0'
+  gem 'ruby-debug'
 end
 
 group :test do

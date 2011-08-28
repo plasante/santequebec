@@ -15,18 +15,31 @@ class User < ActiveRecord::Base
   
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation
   
-  email_regex = /\A[\w+\-.]+@[a-z\d\-.]+[a-z]+\z/i
+  email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  # /          start of regex
+  # \A         match start of a string
+  # [\w+\-.]+  at least one word character,plus hyphen or dot
+  # @          literal "at sign"
+  # [a-z\d-.]+ at least one letter, digit, hyphen, or dot
+  # \.         literal "dot"
+  # [a-z]+     at least one letter
+  # \z         match end of a strint
+  # /          end of regex
+  # i          case insensitive
+
+  validates :first_name, :presence     => { :message => 'est obligatoire'},
+                         :length       => { :maximum => 50 , :message => 'est trop long ( 50 max )'}
+  validates :last_name,  :presence     => { :message => 'est obligatoire'},
+                         :length       => { :maximum => 50 , :message => 'est trop long ( 50 max )'}
+  validates :email,      :presence     => { :message => 'est obligatoire'},
+                         :format       => { :with => email_regex, :message => 'a un format invalide.' },
+                         :uniqueness   => { :case_sensitive => false, :message => 'est déjà pris.'}
   
-  validates(:first_name, :presence     => true,
-                         :length       => {:maximum => 50})
-  validates(:last_name,  :presence     => true,
-                         :length       => {:maximum => 50})
-  validates(:email,      :presence     => true,
-                         :format       => {:with => email_regex},
-                         :uniqueness   => {:case_sensitive => false})
-  validates(:password,   :presence     => true,
-                         :confirmation => true,
-                         :length       => {:within => 6..40})
+  # Automatically create the virtual attribute 'password_confirmation'
+  validates :password,   :presence     => { :message => 'est obligatoire'},
+                         :confirmation => { :message => 'est obligatoire'},
+                         :length       => { :within => 6..40, :message => 'doit avoir entre 6 et 40 caracteres' }
+  
   before_save :encrypt_password
   
   # Return true if the user's password matches the submitted password.

@@ -1,0 +1,11 @@
+<% if @user.errors.any? %>
+   <div id="error_explanation">
+     <h2><%= pluralize(@user.errors.count, "erreur")%> ont emp&egrave;ch&eacute; la sauvegarde:</h2>
+     <p>Il y avait les probl&egrave;mes suivants:</p>
+     <ul>
+     <% @user.errors.full_messages.each do |msg| %>
+       <li><%= msg %></li>
+     <% end %>
+     </ul>
+   </div>
+<% end %>
