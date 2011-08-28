@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
                          :length       => { :maximum => 50 , :message => 'est trop long ( 50 max )'}
   validates :email,      :presence     => { :message => 'est obligatoire'},
                          :format       => { :with => email_regex, :message => 'a un format invalide.' },
-                         :uniqueness   => { :case_sensitive => false, :message => 'est déjà pris.'}
+                         :uniqueness   => { :case_sensitive => false, :message => 'est deja pris.'}
   
   # Automatically create the virtual attribute 'password_confirmation'
   validates :password,   :presence     => { :message => 'est obligatoire'},
