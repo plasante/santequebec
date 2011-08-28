@@ -86,3 +86,10 @@
   font-size: 12px;
   list-style: square;
 }
+
+.success {
+    background: none repeat scroll 0 0 #E6EFC2;
+    border-color: #C6D880;
+    color: #264409;
+}
+
