@@ -1,11 +1,12 @@
 Santequebec::Application.routes.draw do
-  get "sessions/new"
-
   resources :users
+  resources :sessions, :only => [:new, :create, :destroy]
   
   match '/aide',    :to => 'pages#aide'
   match '/apropos', :to => 'pages#apropos'
   match '/signup',  :to => 'users#new'
+  match '/signin',  :to => 'sessions#new'
+  match '/signout', :to => 'sessions#destroy'
 
   root :to => 'pages#home'
   
