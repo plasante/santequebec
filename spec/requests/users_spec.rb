@@ -54,8 +54,8 @@ describe "Users" do
         fill_in :session_password, :with => user.password
         click_button
         controller.should be_signed_in
-        #click_link "Quitter"
-        #controller.should_not be_signed_in
+        click_link "Quitter"
+        controller.should_not be_signed_in
       end
     end
     
