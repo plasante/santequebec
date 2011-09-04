@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_filter :authenticate, :only => [:edit, :update]
+  before_filter :correct_user, :only => [:edit, :update]
+  
   def new
     @title = %(Inscription)
     @user = User.new
@@ -22,7 +25,8 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = User.find(params[:id])
+    # We can now omit @user here since it is defined in the correct_user before_filter
+    #@user = User.find(params[:id])
     @title = %(Modifier)
   end
   
@@ -36,4 +40,15 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
+  
+  private
+  
+    def authenticate
+      deny_access unless signed_in?
+    end
+    
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_path) unless current_user?(@user)
+    end
 end
