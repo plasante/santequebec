@@ -102,4 +102,75 @@ describe UsersController do
     end # of describe success
     
   end # of "describe POST :create"
+  
+  describe "GET :edit" do
+    before(:each) do
+      @user = Factory(:user)
+      test_sign_in(@user)
+    end
+    
+    it "should be successful" do
+      get :edit, :id => @user
+      response.should be_success
+    end
+    
+    it "should have the right title" do
+      get :edit, :id => @user
+      response.should have_selector("title", :content => %(Modifier))
+    end
+  end # of describe GET :edit
+  
+  describe "PUT :update" do
+    
+    before(:each) do
+      @user = Factory(:user)
+      test_sign_in(@user)
+    end
+    
+    describe "failure" do
+      before(:each) do
+        @attr = {:first_name => '',
+                 :last_name  => '',
+                 :email      => '',
+                 :password   => '',
+                 :password_confirmation => ''}
+      end
+      it "should render the :edit page" do
+        put :update, :id => @user, :user => @attr
+        response.should render_template('edit')
+      end
+      
+      it "should have the right title" do
+        put :update, :id => @user, :user => @attr
+        response.should have_selector("title", :content => %(Modifier))
+      end
+    end # of describe failure
+     
+    describe "success" do
+      before(:each) do
+        @attr = {:first_name => 'Pierrot',
+                 :last_name  => 'Lasante',
+                 :email      => 'pierrot@email.com',
+                 :password   => '654321',
+                 :password_confirmation => '654321'}
+      end
+      it "should change the user's attributes" do
+        put :update, :id => @user, :user => @attr
+        @user.reload
+        @user.first_name.should == @attr[:first_name]
+      end
+      
+      it "should redirect to the user show page" do
+        put :update, :id => @user, :user => @attr
+        response.should redirect_to(user_path(@user))
+      end
+      
+      it "should have a flash message" do
+        put :update, :id => @user, :user => @attr
+        flash[:success].should =~ /Modif/i
+      end
+      
+    end # of describe success
+    
+  end # of describe PUT :update
 end

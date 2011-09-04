@@ -20,4 +20,20 @@ class UsersController < ApplicationController
       render :new
     end
   end
+  
+  def edit
+    @user = User.find(params[:id])
+    @title = %(Modifier)
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(params[:user])
+      flash[:success] = %(Modifier)
+      redirect_to @user
+    else
+      @title = %(Modifier)
+      render 'edit'
+    end
+  end
 end
