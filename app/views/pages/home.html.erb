@@ -1,15 +1,14 @@
 <p>Menu Principal</p>
 <ul data-role="listview" data-inset="true">
-  <li><%= link_to "Acceuil",     "#" %></li>
-  <li><%= link_to "Aide",        aide_path %></li>
-  <li><%= link_to "A propos",    apropos_path %></li>
+  <li><%= link_to   "Aide",             aide_path %></li>
+  <li><%= link_to   "A propos",         apropos_path %></li>
   <% if signed_in? %>
-    <li><%= link_to "Quitter", signout_path, :method => :delete %></li>
-    <li><%= link_to "Profil", current_user %></li>
-    <li><%= link_to "Modifier", edit_user_path(current_user) %></li>
+    <li><%= link_to "Quitter",          signout_path, :method => :delete %></li>
+    <li><%= link_to "Profil",           current_user %></li>
+    <li><%= link_to "Modifier",         edit_user_path(current_user) %></li>
     <li><%= link_to "Tous les usagers", users_path %></li>
   <% else %>
-    <li><%= link_to "Connexion", signin_path %></li>
-    <li><%= link_to "Inscription", signup_path %></li>
+    <li><%= link_to "Connexion",        signin_path %></li>
+    <li><%= link_to "Inscription",      signup_path %></li>
   <% end %>
 </ul>

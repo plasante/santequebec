@@ -16,7 +16,13 @@
 <body>
   <div data-role="page" id="first">
     <div data-role="header" data-theme="b">
+      <% if signed_in? %>
+        <%= link_to "Quitter", signout_path, :rel => 'external' %>
+      <% else %>
+        <%= link_to "Connexion", signin_path, :rel => 'external' %>
+      <% end %>
       <h1><%= header %></h1>
+      <%= link_to "Acceuil", root_path, :rel => 'external' %>
     </div>    
     <div data-role="content" data-theme="b">
       <% flash.each do |key, value| %>
