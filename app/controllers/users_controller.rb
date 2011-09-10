@@ -49,7 +49,7 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
-    flash[:success] = %(Utilisateur supprimé)
+    flash[:success] = %(Utilisateur supprimer)
     redirect_to users_path
   end
     
