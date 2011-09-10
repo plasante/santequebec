@@ -1,3 +1,8 @@
 <li>
     <%= link_to user.first_name + ' ' + user.last_name, user %>
+    <% if current_user.admin? %>
+        | <%= link_to "Effacer", user, :method => :delete, 
+                                       :confirm => "Certain?", 
+                                       :title => "Effacer #{user.first_name}" %>
+    <% end %>
 </li>
