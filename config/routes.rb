@@ -1,6 +1,7 @@
 Santequebec::Application.routes.draw do
   resources :users
   resources :sessions, :only => [:new, :create, :destroy]
+  resources :examinations, :only => [:index,:show,:destroy,:edit,:update]
   
   match '/aide',    :to => 'pages#aide'
   match '/apropos', :to => 'pages#apropos'
