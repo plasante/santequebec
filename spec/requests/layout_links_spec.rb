@@ -19,16 +19,21 @@ describe "LayoutLinks" do
     response.should have_selector('p'    , :content => 'A Propos')
   end
   
-  it "should have a signup page at '/signup'" do
-    get '/signup'
-    response.should have_selector('title', :content => %(Inscription))
-  end
-  
   describe "when not signed in" do
     it "should have a signin link" do
       visit root_path
       response.should have_selector("a", :href => signin_path,
                                          :content => %(Connexion))
+    end
+    
+    it "should have a signup page at '/signup'" do
+      get '/signup'
+      response.should have_selector('title', :content => %(Inscription))
+    end
+  
+    it "should not have an examinations link" do
+      visit root_path
+      response.should_not have_selector("a", :href => examinations_path)
     end
   end # of when not signed in
   
@@ -53,5 +58,10 @@ describe "LayoutLinks" do
                                          :content => %(Profil))
     end
     
+    it "should have an examination link" do
+      visit root_path
+      response.should have_selector("a", :href => examinations_path,
+                                         :content => %(Examinations))
+    end
   end # of when signed in
 end

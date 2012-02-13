@@ -9,3 +9,11 @@ end
 Factory.sequence :email do |n|
   "person-#{n}@example.com"
 end
+
+Factory.define :examination do |examination|
+  examination.study    "KNEE"
+  examination.name     "Anonymized"
+  examination.voltage  "120"
+  examination.current  "10"
+  examination.exposure "1"
+end

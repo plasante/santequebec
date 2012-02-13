@@ -22,5 +22,4 @@ class ExaminationsController < ApplicationController
   
   def destroy
   end
-
 end
