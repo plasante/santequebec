@@ -10,11 +10,16 @@ end
 def make_users
   admin = User.create!(:first_name => "Pierre",
                        :last_name  => "Lasante",
-                       :email      => "plasante@email.com",
+                       :email      => "plasante@admin.com",
                        :password   => "123456",
                        :password_confirmation => "123456")
   admin.toggle!(:admin)
-  99.times do |n|
+  User.create!(:first_name => "Pierrot",
+               :last_name  => "Lasante",
+               :email      => "pierrot@email.com",
+               :password   => "123456",
+               :password_confirmation => "123456")
+  98.times do |n|
     first_name = Faker::Name.first_name
     last_name  = Faker::Name.last_name
     email      = "example-#{n+1}@example.org"
@@ -28,9 +33,11 @@ def make_users
 end
 
 def make_examinations
-  Examination.create!(:study    => "KNEE",
-                      :name     => "Anonymized",
-                      :voltage  => "120",
-                      :current  => "10",
-                      :exposure => "1")
+  33.times do
+    Examination.create!(:study    => "KNEE",
+                        :name     => Faker::Name.name,
+                        :voltage  => "120",
+                        :current  => "10",
+                        :exposure => "1")
+  end
 end

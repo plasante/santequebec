@@ -1,0 +1,7 @@
+<li>
+	<%= link_to examination.name, examination %>
+	<% if current_user.admin? %>
+		<%= link_to "delete", examination, :method => :delete, :confirm => "You sure?",
+                                           :title => "Delete #{examination.name}" %>
+	<% end %>
+</li>

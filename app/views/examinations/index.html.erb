@@ -1,2 +1,9 @@
-<h1>Examination#index</h1>
-<p>Find me in app/views/examination/index.html.erb</p>
+<h1>All Examinations</h1>
+
+<%= will_paginate %>
+
+<ul>
+	<%= render @examinations%>
+</ul>
+
+<%= will_paginate %>
