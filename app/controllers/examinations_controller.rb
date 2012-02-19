@@ -14,12 +14,6 @@ class ExaminationsController < ApplicationController
   def update
   end
 
-  def new
-  end
-  
-  def create
-  end
-  
   def destroy
   end
 end
