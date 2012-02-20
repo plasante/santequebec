@@ -60,4 +60,158 @@ describe ExaminationsController do
       end
     end
   end # of describe GET :index
+  
+  describe "GET :show" do
+    before(:each) do
+      @examination = Factory(:examination)
+    end
+    
+    it "should be successful" do
+      get :show, :id => @examination
+      response.should be_success
+    end
+    
+    it "should find the right examination" do
+      get :show, :id => @examination
+      assigns(:examination).should == @examination
+    end
+    
+    it "should have the examination's name" do
+      get :show, :id => @examination
+      response.should have_selector('h1', :content => @examination.name)
+    end
+    
+    describe "non-existent examination" do
+      it "should redirect to the examinations page" do
+        get :show, :id => 0
+        response.should redirect_to examinations_path
+      end
+      
+      it "should have a flash error message" do
+        get :show, :id => 0
+        flash[:error].should =~ /invalid/i
+      end
+    end
+  end # of describe GET :show
+  
+  describe "authentication of edit/update actions" do
+    before(:each) do
+      @examination = Factory(:examination)
+    end
+    
+    describe "for non signed-in users" do
+      it "should deny access to edit" do
+        get :edit, :id => @examination
+        response.should redirect_to signin_path
+        flash[:notice].should =~ /connectez/i
+      end
+      
+      it "should deny access to update" do
+        put :update, :id => @examination, :examination => {}
+        response.should redirect_to signin_path
+        flash[:notice].should =~ /connectez/i
+      end
+    end
+    
+    describe "for signed_in users" do
+      before(:each) do
+        @user = Factory(:user)
+        test_sign_in(@user)
+      end
+      
+      it "should require an admin user to edit" do
+        get :edit, :id => @examination
+        response.should redirect_to examinations_path
+        flash[:error].should =~ /admin/i
+      end
+      
+      it "should require an admin user to update" do
+        put :update, :id => @examination, :examination => {}
+        response.should redirect_to examinations_path
+        flash[:error].should =~ /admin/i
+      end
+    end
+  end # of authentication of edit/update actions
+  
+  describe "GET :edit" do
+    before(:each) do
+      test_sign_in(Factory(:user, :admin => true))
+      @examination = Factory(:examination)
+    end
+    
+    it "should be successful" do
+      get :edit, :id => @examination
+      response.should be_success
+    end
+    
+    it "should have the right title" do
+      get :edit, :id => @examination
+      response.should have_selector("title", :content => %(Edit Examination))
+    end
+    
+    it "should edit the right examination" do
+      get :edit, :id => @examination
+      assigns(:examination).should == @examination
+    end
+    
+    it "should have a flash message if examination not found" do
+      get :edit, :id => 0
+      flash[:error].should =~ /not found/i
+      response.should redirect_to examinations_path
+    end
+  end # of describe GET :edit
+  
+  describe "PUT :update" do
+    before(:each) do
+      @admin = Factory(:user, :admin => true)
+      @examination = Factory(:examination)
+      test_sign_in(@admin)
+    end
+    
+    describe "examination not found" do
+      it "should have a flash message for examination not found" do
+        put :update, :id => 0, :examination => {}
+        flash[:error].should =~ /not found/i
+        response.should redirect_to examinations_path
+      end
+    end
+    
+    describe "failure" do
+      before(:each) do
+        @attr = {:study => "", :name => "", :voltage => "", :current => "", :exposure => ""}
+      end
+      
+      it "should re-render the edit page" do
+        put :update, :id => @examination, :examination => @attr
+        response.should render_template("edit")
+      end
+      
+      it "should have the right title" do
+        put :update, :id => @examination, :examination => @attr
+        response.should have_selector("title", :content => %(Edit Examination))
+      end
+    end
+    
+    describe "success" do
+      before(:each) do
+        @attr = { :study => "Shoulder", :name => "Pierre", :voltage => "1", :current => "2", :exposure => "3"}
+      end
+      
+      it "should update the examination" do
+        put :update, :id => @examination, :examination => @attr
+        @examination.reload
+        @examination.study.should == @attr[:study]
+      end
+      
+      it "should have a flash message" do
+        put :update, :id => @examination, :examination => @attr
+        flash[:success].should =~ /Succesfully/i
+      end
+      
+      it "should render the examination page" do
+        put :update, :id => @examination, :examination => @attr
+        response.should redirect_to examination_path(assigns(:examination))
+      end
+    end
+  end # of describe PUT :update
 end
