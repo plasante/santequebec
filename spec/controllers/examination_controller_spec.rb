@@ -212,4 +212,91 @@ describe ExaminationsController do
       end
     end
   end # of describe PUT :update
+  
+  describe "authentication of edit/update actions" do
+    before(:each) do
+      @examination = Factory(:examination)
+    end
+    
+    describe "for non signed-in users" do
+      it "should deny access to edit actions" do
+        get :edit, :id => @examination
+        response.should redirect_to signin_path
+        flash[:notice].should =~ /Connectez/i
+      end
+      
+      it "should deny access to update action" do
+        put :update, :id => @examination, :examination => {}
+        response.should redirect_to signin_path
+        flash[:notice].should =~ /Connectez/i
+      end
+    end
+    
+    describe "for signed_in users " do
+      describe "for non admin users" do
+        before(:each) do
+          test_sign_in(Factory(:user))
+        end
+        
+        it "should protect the edit actions" do
+          get :edit, :id => @examination
+          response.should redirect_to examinations_path
+        end
+        
+        it "should protect the update actions" do
+          put :update, :id => @examination, :examination => {}
+          response.should redirect_to examinations_path
+        end
+      end
+    end
+  end # of describe authentication of edit/update actions
+  
+  describe "DELETE :destroy" do
+    before(:each) do
+      @examination = Factory(:examination)
+    end
+    
+    describe "for non existent examination record" do
+      it "should detect non existent examination record" do
+        test_sign_in(Factory(:user))
+        delete :destroy, :id => 0
+        response.should redirect_to examinations_path
+      end
+    end
+    
+    describe "as a non-signed-in user" do
+      it "should deny access" do
+        delete :destroy, :id => @examination
+        response.should redirect_to(signin_path)
+      end
+    end
+    
+    describe "as non-admin user" do
+      it "should protect the action" do
+        test_sign_in(Factory(:user))
+        delete :destroy, :id => @examination
+        response.should redirect_to( examinations_path )
+      end
+    end
+    
+    describe "as an admin user" do
+      before(:each) do
+        @admin = Factory(:user, :admin => true)
+        @examination = Factory(:examination)
+        test_sign_in(@admin)
+      end
+      
+      it "should destroy the examination" do
+        lambda do
+          delete :destroy, :id => @examination
+        end.should change(Examination, :count).by(-1)
+      end
+      
+      it "should redirect to the examinations page" do
+        delete :destroy, :id => @examination
+        flash[:success].should =~ /destroyed/i
+        response.should redirect_to(examinations_path)
+      end
+    end
+  end # of DELETE :destroy 
 end

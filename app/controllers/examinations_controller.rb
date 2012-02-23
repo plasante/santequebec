@@ -1,6 +1,6 @@
 class ExaminationsController < ApplicationController
-  before_filter :authenticate, :only => [:index, :edit, :update]
-  before_filter :admin_user,   :only => [:edit, :update]
+  before_filter :authenticate, :only => [:index, :edit, :update, :destroy]
+  before_filter :admin_user,   :only => [:edit, :update, :destroy]
   
   def index
     @title = %(All Examinations)
@@ -50,6 +50,15 @@ class ExaminationsController < ApplicationController
   end
 
   def destroy
+    begin
+      @examination = Examination.find(params[:id])
+      @examination.destroy
+      flash[:success] = %(Examination record was destroyed)
+      redirect_to examinations_path
+    rescue ActiveRecord::RecordNotFound
+      flash[:error] = %(Examination record not found)
+      redirect_to examinations_path
+    end
   end
 
 private
