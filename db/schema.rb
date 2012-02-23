@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(:version => 20120212165430) do
     t.string   "voltage"
     t.string   "current"
     t.string   "exposure"
+    t.integer  "lock_version"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

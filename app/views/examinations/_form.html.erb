@@ -1,4 +1,5 @@
 <%= form_for(@examination) do |f| %>
+  <%= f.hidden_field :lock_version %>
   <% if @examination.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@examination.errors.count, "error") %> prohibited this examination from being saved:</h2>

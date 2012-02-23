@@ -1,6 +1,6 @@
 class ExaminationsController < ApplicationController
   before_filter :authenticate, :only => [:index, :edit, :update]
-  before_filter :admin_user, :only => [:edit, :update]
+  before_filter :admin_user,   :only => [:edit, :update]
   
   def index
     @title = %(All Examinations)
@@ -30,17 +30,22 @@ class ExaminationsController < ApplicationController
 
   def update
     begin
-      @examination = Examination.find(params[:id])
-      if @examination.update_attributes(params[:examination])
-        flash[:success] = %(Succesfully updated examination)
-        redirect_to @examination
-      else
-        @title = %(Edit Examination)
-        render :edit
+      begin
+        @examination = Examination.find(params[:id])
+        if @examination.update_attributes(params[:examination])
+          flash[:success] = %(Succesfully updated examination)
+          redirect_to @examination
+        else
+          @title = %(Edit Examination)
+          render :edit
+        end
+      rescue ActiveRecord::RecordNotFound
+        flash[:error] = %(Examination record not found.)
+        redirect_to examinations_path
       end
-    rescue ActiveRecord::RecordNotFound
-      flash[:error] = %(Examination record not found.)
-      redirect_to examinations_path
+    rescue ActiveRecord::StaleObjectError
+      flash[:error] = %(Examination has been changed by someone else)
+      redirect_to edit_examination_path(@examination)
     end
   end
 
@@ -50,7 +55,6 @@ class ExaminationsController < ApplicationController
 private
 
   def admin_user
-    flash[:error] = %(You must be an admin to edit/update this.)
     redirect_to examinations_path if !current_user.admin?
   end
 end

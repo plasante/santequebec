@@ -122,13 +122,11 @@ describe ExaminationsController do
       it "should require an admin user to edit" do
         get :edit, :id => @examination
         response.should redirect_to examinations_path
-        flash[:error].should =~ /admin/i
       end
       
       it "should require an admin user to update" do
         put :update, :id => @examination, :examination => {}
         response.should redirect_to examinations_path
-        flash[:error].should =~ /admin/i
       end
     end
   end # of authentication of edit/update actions

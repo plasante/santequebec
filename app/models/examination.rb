@@ -1,5 +1,5 @@
 class Examination < ActiveRecord::Base
-  attr_accessible :study, :name, :voltage, :current, :exposure
+  attr_accessible :study, :name, :voltage, :current, :exposure, :lock_version
   
   validates :study, :presence => true,
                     :length   => { :within => 4..50 },
